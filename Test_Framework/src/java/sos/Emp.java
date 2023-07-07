@@ -10,12 +10,14 @@ package sos;
  * @author Tim
  */
 import annotation.AnnotationUrl;
+import etu1928.framework.ModelView;
         
 public class Emp {
     int id = 1;
     
-    @AnnotationUrl(url = "temp1")
-    public int getId(){
-        return id;
+    @AnnotationUrl(url = "emp-all")
+    public ModelView findAll(){
+        ModelView m = new ModelView("emp.jsp");
+        return m;
     }
 }
