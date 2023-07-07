@@ -1,30 +1,37 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package etu1928.framework;
 
-/**
- *
- * @author Tim
- */
+import java.util.HashMap;
+
+
 public class ModelView {
     String url;
+    HashMap<String,Object> data;
 
-    public ModelView() {
-    }
-
-    public ModelView(String url) {
-        this.url = url;
-    }
-
+//GETTERS
     public String getUrl() {
         return url;
     }
+    public HashMap<String, Object> getData(){
+        return this.data;
+    }
+    
+//SETTERS
+    public void setUrl(String view) {
+        this.url = view;
+    }
+    public void setData(HashMap<String,Object> lst){
+        this.data = lst;
+    }
+    
+//CONSTRUCTOR
+    public ModelView(String v) {
+        this.setUrl(v);
+    }
+    public ModelView(){}
 
-    public void setUrl(String url) {
-        this.url = url;
+//METHOD
+    public void addItem(String key , Object value){
+        this.getData().put(key,value);
     }
     
     

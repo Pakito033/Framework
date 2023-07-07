@@ -112,6 +112,12 @@ public class FrontServlet extends HttpServlet {
 
 
 
+    /**
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -137,13 +143,19 @@ public class FrontServlet extends HttpServlet {
                 out.print("</br>");
                 out.print("value = " + this.getMappingUrls().get(key));
                 out.print("</br>");
-                String method = map.getMethods();
+                String method = map.getMethod();
                 //  out.print("</br>"+method);
                 Object obj = Class.forName(map.getClassName()).getConstructor().newInstance();
                 Method m = obj.getClass().getDeclaredMethod(method);
                 ModelView view = (ModelView) m.invoke( obj , (Object[]) null);
+                if(view.getData() != null){
+                    // System.out.println(view.getData().keySet());
+                    for(String dataKey : view.getData().keySet()){
+                        request.setAttribute(dataKey , view.getData().get(dataKey));
+                    }
+                }
                 // out.print(view.getView());
-               request.getRequestDispatcher(view.getView()).forward(request,response);
+               request.getRequestDispatcher(view.getUrl()).forward(request,response);
              }
         }catch(Exception e){
             e.printStackTrace(out);
