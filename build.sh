@@ -4,7 +4,7 @@
 # SCRIPT 1
 
 TEST="./Test Framework/"
-FRAMEWORK="./etu2032"
+FRAMEWORK="./etu1928"
 TOMCAT=$HOME/Desktop/tomcat/webapps
 
 cd './etu2032/'
